@@ -1,0 +1,41 @@
+server:
+  port: 8989
+spring:
+  datasource:
+    master:
+      url: jdbc:mysql://127.0.0.1:3308/test1?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: xinqch
+      type: com.alibaba.druid.pool.DruidDataSource
+    cluster:
+      - key: slave
+        url: jdbc:mysql://127.0.0.1:3309/test2?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: xinqch
+        idle-timeout: 20000
+        type: com.alibaba.druid.pool.DruidDataSource
+#      - key: slave_1
+#        password: root
+#        url: jdbc:mysql://127.0.0.1:3306/slave2?useUnicode=true&characterEncoding=UTF-8
+#        driver-class-name: com.mysql.jdbc.Driver
+#        username: root
+
+#log
+#logging:
+#  file: logger.log
+#  level: debug
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  check-config-location: true
+  type-aliases-package: com.xinqch.mybatismanydatasourcetemplate.data.entity
+
+#分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
